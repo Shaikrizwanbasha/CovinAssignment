@@ -34,7 +34,9 @@ public class ExpenseManagementServiceImpl implements ExpenseManagementServices {
 	public List<ExpenseManagement> getExpensesByUserId(Long userId) {
 		// TODO Auto-generated method stub
 		try {
-			this.expenserepo.findById(userId);
+			this.expenserepo.findAll().stream()
+            .filter(expense -> expense.getUsers().getUserid().equals(userId))
+            .toList();;
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
